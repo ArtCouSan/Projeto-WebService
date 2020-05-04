@@ -1,1 +1,35 @@
-<p>veiculo works!</p>
+<br>
+<br>
+<div class="container">
+        <div class="ui-g-5">
+            <div class="ui-g-12">
+                <h2>Veículos</h2>
+            </div>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Apelido</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Cor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Quilometragem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let veiculo of veiculos">
+                        <th scope="row">{{veiculo.id}}</th>
+                        <td>{{veiculo.placa}}</td>
+                        <td>{{veiculo.apelido}}</td>
+                        <td>{{veiculo.modelo}}</td>
+                        <td>{{veiculo.ano}}</td>
+                        <td>{{veiculo.cor}}</td>
+                        <td>{{veiculo.status}}</td>
+                        <td>{{veiculo.quilometragem}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -10,11 +10,10 @@ import { VeiculoComponent } from './veiculo/veiculo.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioService } from './service/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
-import { UsuarioController } from './controller/usuario.controller';
 import { VeiculoService } from './service/veiculo.service';
-import { VeiculoController } from './controller/veiculo.controller';
 import { ViagemService } from './service/viagem.service';
-import { ViagemController } from './controller/viagem.controller';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,9 @@ import { ViagemController } from './controller/viagem.controller';
     ViagemComponent,
     LocalComponent,
     VeiculoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { ViagemController } from './controller/viagem.controller';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UsuarioService, UsuarioController, VeiculoService, VeiculoController, ViagemService, ViagemController],
+  providers: [UsuarioService, VeiculoService, ViagemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
