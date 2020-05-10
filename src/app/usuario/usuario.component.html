@@ -9,7 +9,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">CPF</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Data de Nascimento</th>
@@ -20,13 +19,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <th scope="row">{{usuario.id}}</th>
-                    <td>{{usuario.cpf}}</td>
-                    <td>{{usuario.nome}}</td>
-                    <td>{{usuario.data_nascimento}}</td>
+                    <th scope="row">{{usuario.cpf}}</th>
+                    <td>{{usuario.name}}</td>
+                    <td>{{usuario.dtBirth}}</td>
                     <td>{{usuario.status}}</td>
-                    <td>{{usuario.dentro_veiculo}}</td>
-                    <td>{{usuario.saldo}}</td>
+                    <td>{{usuario.inVehicle}}</td>
+                    <td>{{usuario.status}}</td>
+                    <!-- <td>{{usuario.saldo}}</td> -->
             </tbody>
         </table>
     </div>

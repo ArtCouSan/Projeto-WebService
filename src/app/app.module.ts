@@ -14,6 +14,7 @@ import { VeiculoService } from './service/veiculo.service';
 import { ViagemService } from './service/viagem.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     VeiculoComponent,
     UsuarioComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

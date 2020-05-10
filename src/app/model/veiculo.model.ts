@@ -1,10 +1,10 @@
 export class VeiculoModel {
     id: number;
-    placa: string;
-    apelido: string;
-    modelo: string;
-    ano: string;
-    cor: string;
+    plate: string;
+    nick: string;
+    model: string;
+    year: string;
+    color: string;
     status: boolean;
-    quilometragem: string;
+    mileage: string;
   }

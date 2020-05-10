@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../core/base.service';
 import { HttpClient } from '@angular/common/http';
 
-const URL_ENDPOINT = 'http://localhost:8080/usuarios';
+const URL_ENDPOINT = 'https://back-webcar-fiap.herokuapp.com/user';
 
 @Injectable()
 export class UsuarioService extends BaseService<UsuarioModel> {
