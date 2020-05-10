@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "viagem-fiap-app"
+    }
+  },
+  "defaultProject": "viagem-fiap-app",
+  "cli": {
+    "analytics": false
+  }
 }
