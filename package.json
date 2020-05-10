@@ -2,7 +2,13 @@
   "name": "viagem-fiap-app",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve"
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "postinstall": "ng build --aot --prod",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -38,5 +44,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": "6.11.0",
+    "npm": "3.10.10"
   }
 }
