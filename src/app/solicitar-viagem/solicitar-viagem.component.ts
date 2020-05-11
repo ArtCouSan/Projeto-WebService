@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { environment } from '../../environments/environment';
@@ -15,10 +15,13 @@ export class SolicitarViagemComponent implements OnInit {
   lat = -23.573997;
   lng = -46.623013;
   destino = 'busque e selecione um';
+  @ViewChild("inputLocal") inputLocal: HTMLCollection;
 
   constructor() { }
 
   ngOnInit() {
+
+    this.inputLocal = document.getElementsByClassName("mapboxgl-ctrl-geocoder--input");
 
     mapboxgl.accessToken = environment.mapbox;
     this.map = new mapboxgl.Map({
@@ -46,6 +49,18 @@ export class SolicitarViagemComponent implements OnInit {
         mapboxgl: mapboxgl
       })
     );
-  }
 
+    this.map.on('keypress', function (e) {
+      console.log(JSON.stringify(e.point));
+    });
+
+    this.inputLocal.item(0).addEventListener('keydown', ($event: KeyboardEvent) => {
+      if ($event.which == 13) {
+        this.destino = (<HTMLTextAreaElement>$event.target).value;
+      } else {
+        this.destino = 'busque e selecione um';
+      }
+    }, false);
+
+  }
 }

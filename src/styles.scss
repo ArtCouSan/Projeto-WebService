@@ -102,8 +102,9 @@ body {
 
 .suggestions {
   list-style: none;
+  pointer-events: none;
 
-  li:hover {
+  .active {
 
     background-color: var(--color-1a936f);
   }
