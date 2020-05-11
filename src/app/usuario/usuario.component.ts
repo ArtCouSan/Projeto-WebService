@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioModel } from '../model/usuario.model';
 import { UsuarioService } from '../service/usuario.service';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-usuario',
@@ -11,10 +12,14 @@ export class UsuarioComponent implements OnInit {
 
   usuarios: UsuarioModel[];
   usuario: UsuarioModel;
+  dataSource = this.usuarios;
+  displayedColumns: string[] = ['cpf', 'name', 'dtBirth', 'status', 'inVehicle'];
+
 
   constructor(private usuarioService: UsuarioService) {
     this.usuarioService.listar().subscribe(resultado => {
       this.usuarios = resultado;
+      this.dataSource = this.usuarios;
     });
   }
 
@@ -25,6 +30,7 @@ export class UsuarioComponent implements OnInit {
   buscar(id: number) {
     return this.usuarioService.buscar(id).subscribe(resultado => {
       this.usuario = resultado;
+      this.dataSource = this.usuarios;
     },
       erro => {
         if (erro.status == 404) {
