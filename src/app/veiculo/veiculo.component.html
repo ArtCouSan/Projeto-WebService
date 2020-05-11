@@ -1,33 +1,58 @@
-<br>
-<br>
-<div class="container">
-        <div class="ui-g-5">
-            <div class="ui-g-12">
-                <h2>Veículos</h2>
-            </div>
-    
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Placa</th>
-                        <th scope="col">Apelido</th>
-                        <th scope="col">Modelo</th>
-                        <th scope="col">Ano</th>
-                        <th scope="col">Cor</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Quilometragem</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let veiculo of veiculos">
-                        <td scope="row">{{veiculo.plate}}</td>
-                        <td>{{veiculo.nick}}</td>
-                        <td>{{veiculo.model}}</td>
-                        <td>{{veiculo.year}}</td>
-                        <td>{{veiculo.color}}</td>
-                        <td>{{veiculo.status}}</td>
-                        <td>{{veiculo.mileage}}</td>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="section-veiculo">
+  <div class="box-table-veiculo">
+    <table mat-table [dataSource]="dataSource" class="table">
+
+      <ng-container matColumnDef="plate">
+        <th class="th" mat-header-cell *matHeaderCellDef>Placa</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.plate }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nick">
+        <th class="th" mat-header-cell *matHeaderCellDef>Apelido</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.nick }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="model">
+        <th class="th" mat-header-cell *matHeaderCellDef>Modelo</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.model }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th class="th" mat-header-cell *matHeaderCellDef>Ano</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.year }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="color">
+        <th class="th" mat-header-cell *matHeaderCellDef>Cor</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.color }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th class="th" mat-header-cell *matHeaderCellDef>Status</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.status }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mileage">
+        <th class="th" mat-header-cell *matHeaderCellDef>Quilometragem</th>
+        <td class="td" mat-cell *matCellDef="let veiculo">
+          {{ veiculo.mileage }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

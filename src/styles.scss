@@ -71,7 +71,7 @@ body {
   text-align: center;
   cursor: pointer;
   color: var(--color-f3e9d2);
-  transition: all .2s;
+  transition: all 0.2s;
 
   .label {
     cursor: pointer;
@@ -94,4 +94,22 @@ body {
   &:focus {
     outline: none;
   }
+}
+
+.suggestions-wrapper {
+  background-color: var(--color-f3e9d2);
+}
+
+.suggestions {
+  list-style: none;
+
+  li:hover {
+
+    background-color: var(--color-1a936f);
+  }
+
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 24rem;
 }

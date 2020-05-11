@@ -18,6 +18,18 @@
     .table {
       width: 100%;
       height: 100%;
+      background: var(--color-f3e9d2);
+
+      .th {
+        font-weight: 600;
+        color: var(--color-114b5f);
+      }
+      
+      .td {
+        font-weight: 500;
+        color: var(--color-114b5f);
+      }
+
     }
   }
 }
