@@ -1,25 +1,32 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { environment } from '../../environments/environment';
+import { MatStepperModule, MatStepper } from '@angular/material/stepper';
+import { ViagemService } from '../service/viagem.service';
+import { ViagemModel } from '../model/viagem.model';
 
 @Component({
   selector: 'app-solicitar-viagem',
   templateUrl: './solicitar-viagem.component.html',
   styleUrls: ['./solicitar-viagem.component.scss']
 })
-export class SolicitarViagemComponent implements OnInit {
+export class SolicitarViagemComponent implements AfterViewInit {
 
-  map: mapboxgl.Map;
-  style = 'mapbox://styles/mapbox/streets-v11';
-  lat = -23.573997;
-  lng = -46.623013;
-  destino = 'busque e selecione um';
+  public map: mapboxgl.Map;
+  public style = 'mapbox://styles/mapbox/streets-v11';
+  public lat = -23.573997;
+  public lng = -46.623013;
+  public destino = 'busque pela caixa de texto e use os ponteiros do teclado para definir';
+  public temDestino = false;
+  public isLinear = true;
+
   @ViewChild("inputLocal") inputLocal: HTMLCollection;
+  @ViewChild('stepper') private myStepper: MatStepper;
 
-  constructor() { }
+  constructor(private serviceViagem: ViagemService) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
 
     this.inputLocal = document.getElementsByClassName("mapboxgl-ctrl-geocoder--input");
 
@@ -33,7 +40,6 @@ export class SolicitarViagemComponent implements OnInit {
 
     this.map.addControl(new mapboxgl.NavigationControl());
 
-    // Add geolocate control to the map.
     this.map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -57,10 +63,29 @@ export class SolicitarViagemComponent implements OnInit {
     this.inputLocal.item(0).addEventListener('keydown', ($event: KeyboardEvent) => {
       if ($event.which == 13) {
         this.destino = (<HTMLTextAreaElement>$event.target).value;
+        this.temDestino = true;
       } else {
-        this.destino = 'busque e selecione um';
+        this.destino = 'busque pela caixa de texto e use os ponteiros do teclado para definir';
+        this.temDestino = false;
       }
     }, false);
+  }
+
+  public solicitarCarro() {
+
+    if (this.temDestino) {
+
+      let viagem: ViagemModel = {
+        adress: this.destino,
+        idUser: 1
+      }
+
+      this.serviceViagem.consultarDisponibilidade(viagem).subscribe(result => {
+        console.log(result);
+      });
+
+    }
 
   }
+
 }

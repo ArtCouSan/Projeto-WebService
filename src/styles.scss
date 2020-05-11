@@ -105,12 +105,29 @@ body {
   pointer-events: none;
 
   .active {
-
     background-color: var(--color-1a936f);
   }
-
 }
 
 .mapboxgl-ctrl-geocoder {
   width: 24rem;
+}
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+  height: 100%;
+  background: transparent;
+}
+
+.mat-horizontal-content-container {
+  height: 85%;
+}
+
+.mat-horizontal-stepper-content {
+  height: 100%;
+}
+
+.match-parent {
+  width: 100%;
+  height: 70%;
 }

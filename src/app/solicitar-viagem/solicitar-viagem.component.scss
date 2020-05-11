@@ -4,18 +4,32 @@
   border-left: var(--color-88d498) solid 7px;
   border-right: var(--color-1a936f) solid 7px;
   height: 80vh;
-  width: 80%;
+  width: 70%;
   margin: 0;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -45%);
 
+  .box {
+    height: 30%;
+    position: relative;
+
+    .box-title{
+      height: 60%;
+      padding: 2rem;
+      color: var(--color-114b5f);
+    }
+
+    .box-button {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
+    }
+  }
 }
 
-.match-parent {
-  width: 100%;
-  height: 40rem;
- 
-}
 
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}

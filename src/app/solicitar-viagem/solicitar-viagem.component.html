@@ -1,7 +1,30 @@
 <div class="section-solicitar-viagem">
-  <div class="maps" id="map" class="match-parent"></div>
-  <h1>Destino: {{ destino }}</h1>
-  <div class="button button--medium" routerLink="/registro">
-    Pedir viagem
-  </div>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step label="Escolha o destino">
+      <div class="maps" id="map" class="match-parent"></div>
+      <div class="box">
+        <div class="box-title">
+          <h1>Destino: {{ destino }}</h1>
+        </div>
+        <div *ngIf="temDestino" class="box-button">
+          <div class="button button--medium" (click)="solicitarCarro()">
+            Pedir carro
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Escolha seu carro">
+      <div class="carros" id="map" class="match-parent"></div>
+      <div class="box">
+        <div class="box-title">
+          <h1>Destino: {{ destino }}</h1>
+        </div>
+        <div *ngIf="temDestino" class="box-button">
+          <div class="button button--medium" (click)="solicitarCarro()">
+            Pedir carro
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
