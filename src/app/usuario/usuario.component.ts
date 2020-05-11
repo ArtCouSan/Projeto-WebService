@@ -52,7 +52,7 @@ export class UsuarioComponent implements OnInit {
 
   atualizar(usuario: UsuarioModel) {
 
-    this.usuarioService.editar(usuario.cpf, usuario).subscribe(resultado => {
+    this.usuarioService.editar(usuario.id, usuario).subscribe(resultado => {
       console.log("Atualizado com sucesso!");
     },
       erro => {

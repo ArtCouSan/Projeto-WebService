@@ -9,7 +9,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Apelido</th>
                         <th scope="col">Modelo</th>
@@ -21,14 +20,13 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let veiculo of veiculos">
-                        <th scope="row">{{veiculo.id}}</th>
-                        <td>{{veiculo.placa}}</td>
-                        <td>{{veiculo.apelido}}</td>
-                        <td>{{veiculo.modelo}}</td>
-                        <td>{{veiculo.ano}}</td>
-                        <td>{{veiculo.cor}}</td>
+                        <td scope="row">{{veiculo.plate}}</td>
+                        <td>{{veiculo.nick}}</td>
+                        <td>{{veiculo.model}}</td>
+                        <td>{{veiculo.year}}</td>
+                        <td>{{veiculo.color}}</td>
                         <td>{{veiculo.status}}</td>
-                        <td>{{veiculo.quilometragem}}</td>
+                        <td>{{veiculo.mileage}}</td>
                 </tbody>
             </table>
         </div>
