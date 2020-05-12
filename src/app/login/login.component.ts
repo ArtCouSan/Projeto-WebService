@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginService } from '../service/login.service';
 import { LoginModel } from '../model/login.model';
 import { Router } from '@angular/router';
@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   login = new LoginModel();
 
+  @Output() mostrarMenuEmitter = new EventEmitter();
+
   constructor(private loginService: LoginService, private router:Router) {
     this.loginService = loginService;
     this.router = router;
@@ -23,15 +25,19 @@ export class LoginComponent implements OnInit {
   }
 
   logar(login: LoginModel){
-    //  this.loginService.logar(login).subscribe(resultado => {
-    //   this.sucesso = resultado;
-    // })
-    this.sucesso = true;
+     this.loginService.logar(login).subscribe(resultado => {
+      console.log(resultado); 
+      this.sucesso = resultado;
 
-    if(this.sucesso){
-      console.log(login)
-      this.router.navigateByUrl('/user/viagem')
-    }else
-    alert("Usuário ou senha incorretos!")
+      if(this.sucesso){
+        console.log(login)
+        this.router.navigateByUrl('/user/viagem')
+        this.mostrarMenuEmitter.emit(this.sucesso);
+      }else
+      alert("Usuário ou senha incorretos!")
+
+     })
+
+   
   }
 }

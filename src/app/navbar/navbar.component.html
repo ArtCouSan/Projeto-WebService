@@ -1,11 +1,11 @@
-<nav class="nav">
+<nav class="nav" >
   <div class="nav-logo">
     <img class="logo" src="assets/icon.png" />
   </div>
   <div class="nav-title">
     WebCar
   </div>
-  <div class="nav-buttons">
+  <div class="nav-buttons" *ngIf="mostrarMenu">
     <div class="button button--small" routerLink="/admin/veiculo">
       <label class="label">
         Veículos
@@ -28,3 +28,4 @@
     </div>
   </div>
 </nav>
+<app-login (mostrarMenuEmitter)="receberMostraMenu($event)"></app-login>
