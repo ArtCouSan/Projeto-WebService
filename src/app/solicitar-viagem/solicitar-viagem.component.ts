@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatStepper } from '@angular/material/stepper';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../environments/environment';
-import { MatStepperModule, MatStepper } from '@angular/material/stepper';
+import { VeiculoModel } from '../model/veiculo.model';
+import { ViagemConfirmarDTO } from '../model/viagem-confirmar.dto';
+import { ViagemDisponibilidadeDTO } from '../model/viagem-disponibildade.dto';
 import { ViagemService } from '../service/viagem.service';
-import { ViagemModel } from '../model/viagem.model';
+import { interval } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitar-viagem',
@@ -17,14 +21,23 @@ export class SolicitarViagemComponent implements AfterViewInit {
   public style = 'mapbox://styles/mapbox/streets-v11';
   public lat = -23.573997;
   public lng = -46.623013;
-  public destino = 'busque pela caixa de texto e use os ponteiros do teclado para definir';
+
+  public destino = 'busque pela caixa de texto e use os ponteiros do teclado para escolher e enter para definir';
+  public veiculo: VeiculoModel;
   public temDestino = false;
+  public temCarro = false;
   public isLinear = true;
 
-  @ViewChild("inputLocal") inputLocal: HTMLCollection;
-  @ViewChild('stepper') private myStepper: MatStepper;
+  public progressbarValue = 0;
+  public progressbarValue2 = 0;
+  public contagemRegressiva = 10;
 
-  constructor(private serviceViagem: ViagemService) { }
+  public veiculos: VeiculoModel[];
+
+  @ViewChild("inputLocal") inputLocal: HTMLCollection;
+  @ViewChild('stepper') private stepper: MatStepper;
+
+  constructor(private serviceViagem: ViagemService, private router: Router) { }
 
   ngAfterViewInit() {
 
@@ -65,27 +78,82 @@ export class SolicitarViagemComponent implements AfterViewInit {
         this.destino = (<HTMLTextAreaElement>$event.target).value;
         this.temDestino = true;
       } else {
-        this.destino = 'busque pela caixa de texto e use os ponteiros do teclado para definir';
+        this.destino = 'busque pela caixa de texto e use os ponteiros do teclado para escolher e enter para definir';
         this.temDestino = false;
       }
     }, false);
   }
 
+  public selecionarVeiculo(veiculo: VeiculoModel) {
+    this.veiculo = veiculo;
+  }
+
   public solicitarCarro() {
-
     if (this.temDestino) {
-
-      let viagem: ViagemModel = {
-        adress: this.destino,
-        idUser: 1
+      let viagem: ViagemDisponibilidadeDTO = {
+        adress: this.destino
       }
 
       this.serviceViagem.consultarDisponibilidade(viagem).subscribe(result => {
-        console.log(result);
-      });
+        this.stepper.next();
+        this.veiculos = result as VeiculoModel[];
 
+        if (this.veiculos.length) {
+          this.temCarro = true;
+        }
+
+      });
+    }
+  }
+
+  public confirmarCarro() {
+
+    let viagem: ViagemConfirmarDTO = {
+      adress: this.destino,
+      idUser: 1,
+      idVehicle: this.veiculo.id
     }
 
+    this.serviceViagem.confirmarViagem(viagem).subscribe(result => {
+
+      if (result) {
+        this.stepper.next();
+        this.progressbar();
+      }
+
+    });
+
+  }
+
+  public progressbar() {
+
+    const timer$ = interval(1000);
+    const sub = timer$.subscribe((sec) => {
+      this.progressbarValue = this.progressbarValue + 10;
+      this.contagemRegressiva = 10 - sec;
+      if (sec === 10) {
+        this.stepper.next();
+        sub.unsubscribe();
+        this.progressbarValue = 0;
+
+        const timer2$ = interval(1000);
+        const sub2 = timer2$.subscribe((sec) => {
+          this.progressbarValue2 = this.progressbarValue2 + 10;
+          if (sec === 10) {
+            sub2.unsubscribe();
+            this.progressbarValue2 = 0;
+            this.stepper.next();
+          }
+        });
+      }
+    });
+
+  }
+
+  finalizar() {
+    this.router.navigateByUrl('/user/viagem', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/user/viagem']);
+    });
   }
 
 }
