@@ -151,9 +151,7 @@ export class SolicitarViagemComponent implements AfterViewInit {
   }
 
   finalizar() {
-    this.router.navigateByUrl('/user/viagem', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/user/viagem']);
-    });
+    this.router.navigateByUrl('/home');
   }
 
 }

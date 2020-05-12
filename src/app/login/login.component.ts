@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
       if(this.sucesso){
         console.log(login)
-        this.router.navigateByUrl('/user/viagem')
+        this.router.navigateByUrl('/home')
       }else
       alert("Usuário ou senha incorretos!")
 
