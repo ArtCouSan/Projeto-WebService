@@ -17,6 +17,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { VeiculoComponent } from './veiculo/veiculo.component';
 import { ViagemComponent } from './viagem/viagem.component';
 import { AgmCoreModule } from '@agm/core';
+import { LoginService } from './service/login.service';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -39,7 +41,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     NoopAnimationsModule,
   ],
-  providers: [UsuarioService, VeiculoService, ViagemService],
+  providers: [UsuarioService, VeiculoService, ViagemService, LoginService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

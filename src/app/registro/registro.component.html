@@ -7,13 +7,13 @@
           <div class="label">
             <label for="cpf">CPF</label>
           </div>
-          <input class="input input--big" id="cpf" type="text" />
+          <input class="input input--big" id="cpf" type="text"  [(ngModel)]="usuario.cpf" name="cpf" />
         </div>
         <div class="body-input">
           <div class="label">
             <label for="name">Nome</label>
           </div>
-          <input class="input input--big" id="name" type="text" />
+          <input class="input input--big" id="name" type="text" [(ngModel)]="usuario.name" name="name"  />
         </div>
         <div class="body-input">
           <div class="label label--big">
@@ -24,17 +24,18 @@
             type="date"
             id="data_nascimento"
             name="data_nascimento"
+            [(ngModel)]="usuario.dtBirth"
           />
         </div>
         <div class="body-input">
           <div class="label">
             <label for="password">Senha</label>
           </div>
-          <input class="input input--big" id="password" type="password" />
+          <input class="input input--big" id="password" type="password" [(ngModel)]="usuario.password" name="password"  />
         </div>
       </div>
       <div class="box-button">
-        <div class="button button--medium" routerLink="/registro">
+        <div class="button button--medium" (click)="registrar(usuario)">
           Cadastrar-se
         </div>
       </div>

@@ -29,7 +29,7 @@ export class ViagemComponent implements OnInit {
             if(erro.status == 404) {
               console.log('Serviço não localizado.');
             }
-          });;
+          });
     }
 
     buscar(id: number){
@@ -40,7 +40,7 @@ export class ViagemComponent implements OnInit {
             if(erro.status == 404) {
               console.log('Serviço não localizado.');
             }
-          });;
+          });
     }
 
     salvar(viagem: ViagemModel){
@@ -51,7 +51,7 @@ export class ViagemComponent implements OnInit {
             if(erro.status == 404) {
               console.log('Serviço não localizado.');
             }
-          });;
+          });
     }
 
     atualizar(id: number, viagem: ViagemModel){
@@ -62,7 +62,7 @@ export class ViagemComponent implements OnInit {
             if(erro.status == 404) {
               console.log('Serviço não localizado.');
             }
-          });;
+          });
     }
 
     deletar(id: number){
@@ -73,7 +73,7 @@ export class ViagemComponent implements OnInit {
             if(erro.status == 404) {
               console.log('Serviço não localizado.');
             }
-          });;
+          });
     }
 
 }

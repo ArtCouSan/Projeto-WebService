@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../service/login.service';
+import { LoginModel } from '../model/login.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  sucesso: boolean;
+
+  login = new LoginModel();
+
+  constructor(private loginService: LoginService, private router:Router) {
+    this.loginService = loginService;
+    this.router = router;
+   }
 
   ngOnInit(): void {
   }
 
+  logar(login: LoginModel){
+    //  this.loginService.logar(login).subscribe(resultado => {
+    //   this.sucesso = resultado;
+    // })
+    this.sucesso = true;
+
+    if(this.sucesso){
+      console.log(login)
+      this.router.navigateByUrl('/user/viagem')
+    }else
+    alert("Usuário ou senha incorretos!")
+  }
 }
