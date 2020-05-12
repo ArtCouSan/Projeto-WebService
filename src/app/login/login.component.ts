@@ -14,8 +14,6 @@ export class LoginComponent implements OnInit {
 
   login = new LoginModel();
 
-  @Output() mostrarMenuEmitter = new EventEmitter();
-
   constructor(private loginService: LoginService, private router:Router) {
     this.loginService = loginService;
     this.router = router;
@@ -32,7 +30,6 @@ export class LoginComponent implements OnInit {
       if(this.sucesso){
         console.log(login)
         this.router.navigateByUrl('/user/viagem')
-        this.mostrarMenuEmitter.emit(this.sucesso);
       }else
       alert("Usuário ou senha incorretos!")
 
