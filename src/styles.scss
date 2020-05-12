@@ -91,6 +91,10 @@ body {
     width: 14rem;
   }
 
+  &--big {
+    width: 20rem;
+  }
+
   &:focus {
     outline: none;
   }
@@ -130,4 +134,37 @@ body {
 .match-parent {
   width: 100%;
   height: 70%;
+}
+
+.mat-step-header {
+  &:hover,
+  &:active,
+  &:link {
+    background: transparent;
+  }
+}
+
+.mat-step-icon {
+  background-color: var(--color-1a936f) !important;
+  color: var(--color-f3e9d2) !important;
+  font-size: 1.2rem;
+}
+
+.mat-step-label {
+  color: var(--color-114b5f) !important;
+  font-weight: 500;
+}
+
+.mat-step-label.mat-step-label-active.mat-step-label-selected {
+  color: var(--color-114b5f) !important;
+  font-weight: 700;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  background-color: var(--color-1a936f) !important;
+  border-color:  var(--color-1a936f) !important;;
+}
+
+.mat-radio-inner-circle {
+  background-color: var(--color-f3e9d2) !important;
 }
